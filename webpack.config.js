@@ -15,26 +15,39 @@ const common = {
   entry: {
     app: PATHS.app,
   },
+  // Add resolve.extenstions
+  // '' is needed to resolve imports without an extention
+  // note the .'s before the extenstions as it will fail without
+  resolve: {
+    extenstion: ['', '.js', '.jsx']
+  },
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
-      {
-        //test expects regexp
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        //include either accepts a path or an array of paths
-        include: PATHS.app
-      }
-    ]
+    loaders: [{
+      //test expects regexp
+      test: /\.css$/,
+      loaders: ['style', 'css'],
+      //include either accepts a path or an array of paths
+      include: PATHS.app
+    }, {
+      test: /\.jsx$/,
+      //enable caching for improved performance during development
+      // It uses the default OS directory by default. If you need something
+      // more custom, pass a path to it. ie babel?cacheDirectory=<path>
+      loaders: ['babel?cacheDirectory'],
+      // Parse only app files, without this it will likely go through the entire project
+      // in addition to being slow it will mostly likely result in an Error
+      include PATHS.app
+    }]
   }
 };
 //Default configuration. We will return this if
 //Webpack is called outside of npm.
 
-if (TARGET === 'start' || !TARGET){
+if (TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
     devtool: 'eval-source-map',
     devServer: {
@@ -70,6 +83,6 @@ if (TARGET === 'start' || !TARGET){
   });
 }
 
-if (TARGET === 'build'){
+if (TARGET === 'build') {
   module.exports = merge(common, {});
 }
