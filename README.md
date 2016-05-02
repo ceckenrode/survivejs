@@ -1,0 +1,2 @@
+# survivejs
+practice with webpack
