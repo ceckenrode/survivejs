@@ -17,6 +17,17 @@ const common = {
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      {
+        //test expects regexp
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        //include either accepts a path or an array of paths
+        include: PATHS.app
+      }
+    ]
   }
 };
 //Default configuration. We will return this if
