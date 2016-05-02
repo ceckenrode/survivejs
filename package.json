@@ -1,0 +1,26 @@
+{
+  "name": "survivejs",
+  "version": "1.0.0",
+  "description": "practice with webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ceckenrode/survivejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ceckenrode/survivejs/issues"
+  },
+  "homepage": "https://github.com/ceckenrode/survivejs#readme",
+  "devDependencies": {
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.12.0"
+  }
+}
